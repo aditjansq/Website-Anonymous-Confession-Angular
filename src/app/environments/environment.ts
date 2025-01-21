@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://api-confess-production.up.railway.app',
+  apiUrl: 'https://api-ejs-confess-production.up.railway.app',
 };
