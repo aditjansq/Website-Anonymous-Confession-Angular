@@ -1,6 +1,8 @@
 # ConfesslistSite
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
+![image](https://github.com/user-attachments/assets/33d0562d-522f-4bb0-bd2f-42df1a3e5ba6)
+
 
 ## Development server
 
