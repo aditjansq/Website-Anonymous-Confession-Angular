@@ -1,0 +1,16 @@
+<div class="container mx-auto mt-8">
+    <h3 class="text-2xl font-semibold mb-4">Tagged Confesses</h3>
+    <div class="space-y-4">
+      <!-- Menampilkan tagged confesses -->
+      <div *ngFor="let taggedConfess of taggedConfesses" class="p-4 border rounded-lg shadow-lg">
+        <div class="font-bold text-lg">Tags:</div>
+        <div class="flex flex-wrap gap-2 mt-2">
+          <!-- Menampilkan tag dengan format #tag -->
+          <span *ngFor="let tag of taggedConfess.tags" class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
+            #{{ tag }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  

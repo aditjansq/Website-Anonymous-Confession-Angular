@@ -1,0 +1,55 @@
+<div *ngIf="todo" class="max-w-md mx-auto bg-white shadow-lg rounded-lg p-6 mt-8">
+    <h2 class="text-3xl font-semibold text-gray-800 mb-4">{{ todo.title }}</h2>
+    <p class="text-gray-600 mb-6">{{ todo.description || 'Deskripsi tidak tersedia' }}</p>
+
+    <!-- Due Date -->
+    <div class="mb-4">
+      <strong>Tanggal Tenggat: </strong>
+      <p> Tanggal : {{ todo.dueDate | date:'short' }} </p>
+    </div>
+
+    <!-- User -->
+    <div class="mb-4">
+      <strong>Pengguna: </strong>
+      <span>{{ todo.user.username || 'Pengguna tidak tersedia' }}</span>
+    </div>
+
+    <!-- Created At -->
+    <div class="mb-4">
+      <strong>Dibuat pada: </strong>
+      <span>{{ todo.createdAt ? (todo.createdAt | date: 'short') : 'Tanggal tidak tersedia' }}</span>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="mt-6">
+      <h3 class="text-2xl font-semibold mb-4">Komentar</h3>
+      
+      <!-- Display Comments -->
+      <div *ngFor="let comment of todo.comments" class="bg-gray-100 p-4 rounded-lg mb-4">
+        <div class="flex items-center mb-2">
+          <span class="font-semibold">{{ comment.user.username }}</span>
+          <span class="text-sm text-gray-500 ml-2">{{ comment.createdAt | date: 'short' }}</span>
+        </div>
+        <p>{{ comment.text }}</p>
+      </div>
+
+      <!-- Add Comment Form -->
+      <div class="mt-4">
+        <textarea 
+          [(ngModel)]="newCommentText" 
+          placeholder="Tambahkan komentar..." 
+          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4" 
+          rows="4"></textarea>
+        <button 
+          (click)="addComment(todo._id)" 
+          class="bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-200">
+          Tambahkan Komentar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="text-red-600 mt-4">
+    {{ errorMessage }}
+  </div>

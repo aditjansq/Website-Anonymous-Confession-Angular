@@ -1,0 +1,76 @@
+<div class="register-container bg-gradient-to-r from-blue-500 to-teal-400 min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 mx-8 rounded-lg shadow-xl w-full max-w-md">
+    <h2 class="text-4xl font-bold text-center text-blue-600 mb-8">Daftar</h2>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Username Field -->
+      <div class="mb-6">
+        <label for="username" class="block text-gray-700 text-sm font-semibold mb-2">Nama Lengkap</label>
+        <input
+          id="username"
+          formControlName="username"
+          type="text"
+          placeholder="Masukkan nama lengkap"
+          class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+        />
+        <div
+          *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched"
+          class="text-red-500 mt-2 text-sm"
+        >
+          <span>Nama setidaknya 3 huruf.</span>
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="mb-6">
+        <label for="email" class="block text-gray-700 text-sm font-semibold mb-2">Email</label>
+        <input
+          id="email"
+          formControlName="email"
+          type="email"
+          placeholder="Masukkan email anda"
+          class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+        />
+        <div
+          *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+          class="text-red-500 mt-2 text-sm"
+        >
+          <span>Silahkan masukkan email yang sah.</span>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="mb-6">
+        <label for="password" class="block text-gray-700 text-sm font-semibold mb-2">Kata Sandi</label>
+        <input
+          id="password"
+          formControlName="password"
+          type="password"
+          placeholder="Masukkan kata sandi anda"
+          class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+        />
+        <div
+          *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+          class="text-red-500 mt-2 text-sm"
+        >
+          <span>Kata sandi setidaknya 6 huruf.</span>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        [disabled]="registerForm.invalid"
+        class="w-full py-3 bg-gradient-to-r from-blue-600 to-teal-500 text-white rounded-lg hover:bg-gradient-to-r hover:from-blue-500 hover:to-teal-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 disabled:bg-gray-400"
+      >
+        Daftar
+      </button>
+    </form>
+
+    <!-- Existing Account Link -->
+    <p class="mt-4 text-center text-gray-600 text-sm">
+      Sudah punya akun? 
+      <a href="/login" class="text-blue-600 hover:text-blue-800 font-semibold transition duration-300">Masuk</a>
+    </p>
+  </div>
+</div>
