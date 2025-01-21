@@ -1,7 +1,10 @@
 # ConfesslistSite
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
-![image](https://github.com/user-attachments/assets/33d0562d-522f-4bb0-bd2f-42df1a3e5ba6)
+
+![image](https://github.com/user-attachments/assets/b014b479-a835-4fc0-bf00-388c6901853c)
+![image](https://github.com/user-attachments/assets/90947e91-9808-493b-8b70-d994bf713ce1)
+
 
 Run Demo Site : https://kuyfess.vercel.app/
 
