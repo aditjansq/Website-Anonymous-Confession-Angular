@@ -1,40 +1,38 @@
-<div class="min-h-screen bg-gradient-to-br from-white via-indigo-50 to-teal-50 flex items-center justify-center px-4">
-  <div class="w-full max-w-2xl bg-white/90 backdrop-blur-sm p-6 sm:p-10 rounded-2xl shadow-xl space-y-6">
-    
-    <h2 class="text-3xl sm:text-4xl font-semibold text-indigo-700 text-center tracking-tight font-sans">
-      Message
-    </h2>
+<div class="relative min-h-screen flex items-center justify-center bg-cover bg-center font-ios text-gray-800"
+     style="background-image: url('https://images.unsplash.com/photo-1609171712489-45b6ba7051a4?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3Vuc2V0JTIwYWVzdGhldGljfGVufDB8fDB8fHww')">
 
-    <!-- Loading & Content -->
-    <div *ngIf="confess; else loading" class="space-y-4">
-      <div>
-        <p class="text-sm text-gray-400 uppercase font-medium mb-1">Untuk</p>
-        <h3 class="text-2xl text-gray-800 font-bold font-sans mb-3">
-          {{ confess.receiver }}
-        </h3>
+  <!-- Overlay gelap tipis agar teks lebih terbaca -->
+  <div class="absolute inset-0 bg-black/30 z-0 backdrop-blur-sm"></div>
 
-        <p class="text-base text-gray-600 leading-relaxed font-light mb-6">
-          {{ confess.message }}
-        </p>
+  <!-- Card bergaya iOS dengan blur -->
+  <div class="relative z-10 w-full max-w-md sm:max-w-xl p-6 sm:p-10 
+              bg-white/20 backdrop-blur-lg rounded-3xl shadow-2xl
+              text-gray-900 space-y-6">
 
-        <div class="flex items-center justify-between text-sm text-gray-500">
-          <div class="space-y-1">
-            <p><strong>Pengirim:</strong> {{ confess.user?.name || 'Tidak diketahui' }}</p>
-            <!-- Email bisa disembunyikan untuk menjaga privasi -->
-            <!-- <p><strong>Email:</strong> {{ confess.user?.email || 'Tidak diketahui' }}</p> -->
-          </div>
-          <p><strong>{{ confess.createdAt | date: 'mediumDate' }}</strong></p>
+    <!-- Header -->
+    <div class="text-center space-y-2">
+      <h1 class="text-3xl sm:text-4xl font-semibold">💌 Pengakuan</h1>
+      <p class="text-sm text-gray-200">Sebuah pesan rahasia untuk seseorang</p>
+    </div>
+
+    <!-- Konten -->
+    <div *ngIf="confess; else loading" class="space-y-4 text-[17px] leading-relaxed text-white">
+      <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 shadow-inner">
+        <p class="text-sm text-gray-300 mb-1">Untuk</p>
+        <h3 class="text-xl font-semibold">{{ confess.receiver }}</h3>
+        <p class="mt-4">{{ confess.message }}</p>
+        <div class="mt-6 flex items-center justify-between text-xs text-gray-200">
+          <span>Pengirim: {{ confess.user?.name || 'Tidak diketahui' }}</span>
+          <span>{{ confess.createdAt | date: 'mediumDate' }}</span>
         </div>
       </div>
     </div>
 
-    <!-- Loading State -->
+    <!-- Loading -->
     <ng-template #loading>
-      <div class="text-center text-gray-400 text-sm py-6">
-        <p class="animate-pulse">Sedang memuat pengakuan...</p>
+      <div class="text-center text-gray-300 text-sm py-6 animate-pulse">
+        Memuat pesan...
       </div>
     </ng-template>
-
   </div>
 </div>
-
