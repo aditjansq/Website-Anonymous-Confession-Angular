@@ -1,16 +1,26 @@
-<div class="container mx-auto mt-8">
-    <h3 class="text-2xl font-semibold mb-4">Tagged Confesses</h3>
-    <div class="space-y-4">
-      <!-- Menampilkan tagged confesses -->
-      <div *ngFor="let taggedConfess of taggedConfesses" class="p-4 border rounded-lg shadow-lg">
-        <div class="font-bold text-lg">Tags:</div>
-        <div class="flex flex-wrap gap-2 mt-2">
-          <!-- Menampilkan tag dengan format #tag -->
-          <span *ngFor="let tag of taggedConfess.tags" class="bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
+<!-- Wrapper dengan latar belakang gradasi dan blur -->
+<div class="min-h-screen bg-gradient-to-br from-[#2e2257] via-[#3d2f7a] to-[#483b8b] py-12 px-4">
+  <div class="container mx-auto">
+    <h3 class="text-3xl font-semibold text-white mb-10 text-center drop-shadow-md">🌸 Kumpulan Pengakuan Berdasar Tag</h3>
+
+    <div class="space-y-8">
+      <!-- Loop setiap tagged confess -->
+      <div
+        *ngFor="let taggedConfess of taggedConfesses"
+        class="bg-white/5 backdrop-blur-xl border border-white/20 p-6 rounded-2xl shadow-lg transition duration-300 hover:ring-2 hover:ring-indigo-400/30 hover:scale-[1.01]"
+      >
+        <div class="font-semibold text-lg text-purple-200 mb-3">Tag Terkait:</div>
+
+        <div class="flex flex-wrap gap-3 mt-2">
+          <!-- Menampilkan tag -->
+          <span
+            *ngFor="let tag of taggedConfess.tags"
+            class="bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-500 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-md hover:brightness-110 transition-all"
+          >
             #{{ tag }}
           </span>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

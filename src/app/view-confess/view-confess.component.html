@@ -1,28 +1,31 @@
-<div class="relative min-h-screen flex items-center justify-center bg-cover bg-center font-ios text-gray-800"
-     style="background-image: url('https://images.unsplash.com/photo-1609171712489-45b6ba7051a4?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3Vuc2V0JTIwYWVzdGhldGljfGVufDB8fDB8fHww')">
+<div class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-800 to-blue-900 font-ios text-white">
 
-  <!-- Overlay gelap tipis agar teks lebih terbaca -->
-  <div class="absolute inset-0 bg-black/30 z-0 backdrop-blur-sm"></div>
+  <!-- Overlay gelap untuk fokus ke konten -->
+  <div class="absolute inset-0 bg-black/50 z-0 backdrop-blur-sm"></div>
 
-  <!-- Card bergaya iOS dengan blur -->
-  <div class="relative z-10 w-full max-w-md sm:max-w-xl p-6 sm:p-10 
-              bg-white/20 backdrop-blur-lg rounded-3xl shadow-2xl
-              text-gray-900 space-y-6">
+  <!-- Card utama -->
+  <div class="relative z-10 w-full max-w-lg p-8 sm:p-10 
+              bg-white/10 backdrop-blur-2xl rounded-3xl shadow-xl
+              text-white space-y-8 border border-white/10">
 
     <!-- Header -->
     <div class="text-center space-y-2">
-      <h1 class="text-3xl sm:text-4xl font-semibold">💌 Pengakuan</h1>
-      <p class="text-sm text-gray-200">Sebuah pesan rahasia untuk seseorang</p>
+      <h1 class="text-4xl font-semibold tracking-tight">💌 Sebuah Pengakuan</h1>
+      <p class="text-sm text-gray-300 italic">Kadang, yang tak terucap… dititipkan lewat kata.</p>
     </div>
 
-    <!-- Konten -->
-    <div *ngIf="confess; else loading" class="space-y-4 text-[17px] leading-relaxed text-white">
-      <div class="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/20 shadow-inner">
-        <p class="text-sm text-gray-300 mb-1">Untuk</p>
-        <h3 class="text-xl font-semibold">{{ confess.receiver }}</h3>
-        <p class="mt-4">{{ confess.message }}</p>
-        <div class="mt-6 flex items-center justify-between text-xs text-gray-200">
-          <span>Pengirim: {{ confess.user?.name || 'Tidak diketahui' }}</span>
+    <!-- Isi pengakuan -->
+    <div *ngIf="confess; else loading" class="space-y-6 text-[16px] leading-relaxed">
+      <div class="bg-white/5 p-6 rounded-2xl border border-white/10 shadow-inner space-y-4">
+        <div class="text-left">
+          <p class="text-sm uppercase tracking-widest text-gray-400">Ditujukan untuk</p>
+          <h3 class="text-2xl font-bold">{{ confess.receiver }}</h3>
+        </div>
+        <blockquote class="text-gray-100 italic border-l-4 border-purple-300 pl-4">
+          “{{ confess.message }}”
+        </blockquote>
+        <div class="flex items-center justify-between text-xs text-gray-400 pt-2 border-t border-white/10">
+          <span>Dari: <span class="font-medium">{{ confess.user?.name || 'Anonim' }}</span></span>
           <span>{{ confess.createdAt | date: 'mediumDate' }}</span>
         </div>
       </div>
@@ -30,8 +33,8 @@
 
     <!-- Loading -->
     <ng-template #loading>
-      <div class="text-center text-gray-300 text-sm py-6 animate-pulse">
-        Memuat pesan...
+      <div class="text-center text-gray-300 text-sm py-6 animate-pulse italic">
+        Menyusun kata-kata yang belum sempat terucap...
       </div>
     </ng-template>
   </div>

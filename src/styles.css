@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Style custom scrollbar untuk Webkit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #a78bfa, #8b5cf6); /* gradasi ungu */
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #7c3aed, #6d28d9);
+}
+
+/* Scrollbar untuk Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #8b5cf6 transparent;
+}

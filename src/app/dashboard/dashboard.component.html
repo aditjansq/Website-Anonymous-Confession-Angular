@@ -1,138 +1,59 @@
-<div class="min-h-screen flex flex-col bg-gray-100">
+<div class="min-h-screen flex flex-col bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900 font-ios text-white">
   <!-- Navbar -->
-  <nav class="bg-blue-600 p-4 shadow-md fixed top-0 left-0 w-full z-50">
+  <nav class="bg-white/10 backdrop-blur-md p-4 shadow-md fixed top-0 left-0 w-full z-50 border-b border-white/10">
     <div class="container mx-auto flex justify-between items-center">
-      <!-- Logo atau Nama Aplikasi -->
-      <div class="text-white text-2xl font-semibold">
-        Kuyfess
-      </div>
+      <div class="text-white text-2xl font-semibold tracking-tight">Kuyfess</div>
 
       <!-- Menu Desktop -->
       <div class="hidden md:flex space-x-4">
-        <a
-          [routerLink]="['/dashboard']"
-          class="text-white hover:bg-blue-500 px-4 py-2 rounded-lg transition duration-200"
-          routerLinkActive="bg-blue-500"
-          >Dashboard</a
-        >
-        <a
-          [routerLink]="['/submit']"
-          class="text-white hover:bg-blue-500 px-4 py-2 rounded-lg transition duration-200"
-          routerLinkActive="bg-blue-500"
-          >Buat Pengakuan</a
-        >
-        <a
-          [routerLink]="['/tagged']"
-          class="text-white hover:bg-blue-500 px-4 py-2 rounded-lg transition duration-200"
-          routerLinkActive="bg-blue-500"
-          >Tagged</a
-        >
-        <button
-          class="bg-red-500 text-white px-4 py-2 rounded-full shadow hover:bg-red-600 transition"
-          (click)="openLogoutModal()"
-        >
-          Logout
-        </button>
+        <a [routerLink]="['/dashboard']" class="text-white hover:text-purple-300 px-4 py-2 rounded-lg transition duration-200" routerLinkActive="text-purple-300">Dashboard</a>
+        <a [routerLink]="['/submit']" class="text-white hover:text-purple-300 px-4 py-2 rounded-lg transition duration-200" routerLinkActive="text-purple-300">Buat Pengakuan</a>
+        <a [routerLink]="['/tagged']" class="text-white hover:text-purple-300 px-4 py-2 rounded-lg transition duration-200" routerLinkActive="text-purple-300">Tagged</a>
+        <button class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition" (click)="openLogoutModal()">Logout</button>
       </div>
 
-      <!-- Menu Mobile -->
-      <div class="md:hidden flex items-center space-x-2">
-        <button
-          class="text-white"
-          (click)="isMobileMenuOpen = !isMobileMenuOpen"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            class="w-6 h-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button (click)="isMobileMenuOpen = !isMobileMenuOpen" class="text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
       </div>
     </div>
 
-    <!-- Dropdown Menu (Mobile) -->
-    <div
-      *ngIf="isMobileMenuOpen"
-      class="flex flex-col items-center md:hidden bg-blue-600 space-y-2 p-4"
-    >
-      <a
-        [routerLink]="['/dashboard']"
-        class="text-white hover:bg-blue-500 px-4 py-2 rounded-lg transition duration-200"
-        routerLinkActive="bg-blue-500"
-        >Dashboard</a
-      >
-      <a
-        [routerLink]="['/submit']"
-        class="text-white hover:bg-blue-500 px-4 py-2 rounded-lg transition duration-200"
-        routerLinkActive="bg-blue-500"
-        >Buat Pengakuan</a
-      >
-      <a
-        [routerLink]="['/tagged']"
-        class="text-white hover:bg-blue-500 px-4 py-2 rounded-lg transition duration-200"
-        routerLinkActive="bg-blue-500"
-        >Tagged</a
-      >
-      <button
-        class="bg-red-500 text-white px-4 py-2 rounded-full shadow hover:bg-red-600 transition"
-        (click)="openLogoutModal()"
-      >
-        Logout
-      </button>
+    <!-- Mobile Dropdown -->
+    <div *ngIf="isMobileMenuOpen" class="md:hidden flex flex-col items-center bg-white/10 backdrop-blur-md space-y-2 p-4 mt-2 border-t border-white/10">
+      <a [routerLink]="['/dashboard']" class="text-white hover:text-purple-300">Dashboard</a>
+      <a [routerLink]="['/submit']" class="text-white hover:text-purple-300">Buat Pengakuan</a>
+      <a [routerLink]="['/tagged']" class="text-white hover:text-purple-300">Tagged</a>
+      <button class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600" (click)="openLogoutModal()">Logout</button>
     </div>
   </nav>
 
-  <!-- Konten Utama -->
+  <!-- Konten -->
   <div class="flex-grow pt-24 p-6">
-    <!-- Navigasi ke SubmitComponent -->
     <div class="flex justify-center mb-6">
-      <a [routerLink]="['/submit']" class="bg-gradient-to-r from-blue-500 to-teal-400 text-white px-6 py-3 rounded-full shadow-xl hover:shadow-2xl transition duration-300">
-        Buat Pengakuan Baru
-      </a>
+      <a [routerLink]="['/submit']" class="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-2xl transition">Tulis Pengakuan Baru</a>
     </div>
 
-    <!-- Input Search -->
+    <!-- Search -->
     <div class="mb-6 flex justify-center">
-      <input
-        type="text"
-        class="p-2 w-full max-w-lg border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
-        placeholder="Cari pengakuan..."
-        [(ngModel)]="searchTerm"
-        (input)="filterConfesses()"
-      />
+      <input type="text" [(ngModel)]="searchTerm" (input)="filterConfesses()" placeholder="Cari pengakuan yang menyentuh hati..." class="w-full max-w-lg p-3 rounded-xl bg-white/10 border border-white/20 placeholder-gray-300 text-white focus:outline-none focus:ring-2 focus:ring-purple-400" />
     </div>
 
-    <!-- Card Container -->
+    <!-- Card List -->
     <div class="mx-auto lg:w-[600px] max-h-[600px] overflow-y-auto space-y-6">
-      <div *ngFor="let confess of filteredConfesses" class="bg-white p-4 rounded-xl shadow-lg hover:shadow-xl transition duration-300 ease-in-out mb-6">
-        <div (click)="goToViewConfess(confess._id)" class="w-full">
+      <div *ngFor="let confess of filteredConfesses" class="bg-white/10 backdrop-blur-xl p-6 rounded-2xl shadow-md hover:shadow-xl border border-white/10 transition duration-300">
+        <div (click)="goToViewConfess(confess._id)">
           <div class="flex justify-between items-start">
-            <h3 class="text-lg font-semibold text-gray-800 mb-2">
-              Kepada: <span class="text-blue-600">{{ confess.receiver }}</span>
-            </h3>
-            <p class="text-xs text-gray-500">
-              Dibuat pada: {{ confess.createdAt | date: 'short' }}
-            </p>
+            <h3 class="text-lg font-semibold text-white mb-2">Untuk: <span class="text-purple-300">{{ confess.receiver }}</span></h3>
+            <p class="text-xs text-gray-300">{{ confess.createdAt | date: 'short' }}</p>
           </div>
-          <p class="text-gray-600 mb-4 text-sm line-clamp-3">{{ confess.message }}</p>
-          <div class="flex justify-between items-center text-xs text-gray-500">
-            <p>Pengirim: {{ confess.user?.name || 'Tidak diketahui' }}</p>
-            <div class="flex space-x-2">
-              <button
-                class="bg-gray-300 text-black py-1 px-4 rounded-full text-xs hover:bg-gray-400 transition"
-                (click)="openShareModal(confess._id); $event.stopPropagation()">
-                Share
-              </button>
-            </div>
+          <p class="text-gray-100 italic mb-4 text-sm line-clamp-3">“{{ confess.message }}”</p>
+          <div class="flex justify-between items-center text-xs text-gray-300">
+            <p>Dari: {{ confess.user?.name || 'Anonim' }}</p>
+            <button class="bg-white/20 text-white px-4 py-1 rounded-full hover:bg-white/30 transition" (click)="openShareModal(confess._id); $event.stopPropagation()">Bagikan</button>
           </div>
         </div>
       </div>
@@ -140,38 +61,31 @@
   </div>
 
   <!-- Modal Logout -->
-  <div *ngIf="isLogoutModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-    <div class="bg-white p-6 rounded-xl w-96">
-      <h3 class="text-xl font-semibold text-center mb-4">Konfirmasi Logout</h3>
-      <p class="text-center mb-4">Apakah Anda yakin ingin keluar?</p>
+  <div *ngIf="isLogoutModalOpen" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50">
+    <div class="bg-white/10 backdrop-blur-xl p-6 rounded-2xl w-96 border border-white/20 text-white">
+      <h3 class="text-xl font-semibold text-center mb-4">Yakin ingin keluar?</h3>
+      <p class="text-center text-sm text-gray-300 mb-4">Kami akan menunggu pengakuanmu yang berikutnya.</p>
       <div class="flex justify-between">
-        <button class="bg-gray-300 text-black px-6 py-2 rounded-full" (click)="closeLogoutModal()">Batal</button>
-        <button class="bg-red-500 text-white px-6 py-2 rounded-full" (click)="confirmLogout()">Logout</button>
+        <button class="bg-white/20 px-6 py-2 rounded-full hover:bg-white/30 transition" (click)="closeLogoutModal()">Batal</button>
+        <button class="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600" (click)="confirmLogout()">Logout</button>
       </div>
     </div>
   </div>
 
   <!-- Modal Share -->
-  <div *ngIf="isShareModalOpen" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-    <div class="bg-white p-6 rounded-xl w-96">
-      <h3 class="text-xl font-semibold text-center mb-4">Bagikan Pengakuan</h3>
-      <p class="text-center mb-4">Salin link di bawah untuk membagikan pengakuan ini.</p>
-      <div class="flex justify-center mb-4">
-        <input
-          type="text"
-          class="p-2 w-full border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
-          [value]="shareLink"
-          readonly
-        />
-      </div>
+  <div *ngIf="isShareModalOpen" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50">
+    <div class="bg-white/10 backdrop-blur-xl p-6 rounded-2xl w-96 border border-white/20 text-white">
+      <h3 class="text-xl font-semibold text-center mb-4">Bagikan Pengakuan Ini</h3>
+      <p class="text-center text-sm text-gray-300 mb-4">Salin tautan di bawah untuk mengirimkan pesan ini ke orang yang kamu maksud.</p>
+      <input type="text" [value]="shareLink" readonly class="w-full p-2 rounded-xl bg-white/20 text-white border border-white/30 focus:outline-none mb-4" />
       <div class="flex justify-center">
-        <button class="bg-gray-300 text-black px-6 py-2 rounded-full" (click)="closeShareModal()">Tutup</button>
+        <button class="bg-white/20 text-white px-6 py-2 rounded-full hover:bg-white/30" (click)="closeShareModal()">Tutup</button>
       </div>
     </div>
   </div>
 
   <!-- Footer -->
-  <footer class="bg-blue-600 text-white text-center py-4">
-    <p>&copy; 2025 Confesses. All rights reserved.</p>
+  <footer class="bg-white/10 backdrop-blur-md text-white text-center py-4 border-t border-white/10">
+    <p>&copy; 2025 Kuyfess — Menitipkan kata, tanpa suara.</p>
   </footer>
 </div>
