@@ -1,43 +1,37 @@
-<div class="login-container bg-gradient-to-r from-blue-500 to-teal-400 min-h-screen flex items-center justify-center">
-  <div class="bg-white p-8 mx-8 rounded-lg shadow-xl w-full max-w-md">
-    <h2 class="text-4xl font-bold text-center text-blue-600 mb-8">Login</h2>
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900 font-ios text-white px-4">
+  <div class="bg-white/10 backdrop-blur-lg rounded-3xl shadow-xl w-full max-w-md p-8 border border-white/20">
+    <h2 class="text-4xl font-bold text-center text-purple-300 mb-8 drop-shadow-md">Login Kuyfess</h2>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
       <!-- Email Field -->
-      <div class="mb-6">
-        <label for="email" class="block text-gray-700 text-sm font-semibold mb-2">Email</label>
+      <div>
+        <label for="email" class="block text-purple-300 text-sm font-semibold mb-2">Email</label>
         <input
           type="email"
           id="email"
           formControlName="email"
           required
-          class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
           placeholder="Masukkan email Anda"
+          class="w-full p-4 rounded-xl bg-white/20 border border-white/30 placeholder-purple-300 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 transition duration-300"
         />
-        <div
-          *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched"
-          class="text-red-500 mt-2 text-sm"
-        >
-          <span>Dibutuhkan email yang sah</span>
+        <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched" class="text-red-400 mt-2 text-xs italic">
+          Dibutuhkan email yang sah
         </div>
       </div>
 
       <!-- Password Field -->
-      <div class="mb-6">
-        <label for="password" class="block text-gray-700 text-sm font-semibold mb-2">Kata Sandi</label>
+      <div>
+        <label for="password" class="block text-purple-300 text-sm font-semibold mb-2">Kata Sandi</label>
         <input
           type="password"
           id="password"
           formControlName="password"
           required
-          class="w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
           placeholder="Masukkan kata sandi"
+          class="w-full p-4 rounded-xl bg-white/20 border border-white/30 placeholder-purple-300 text-white focus:outline-none focus:ring-2 focus:ring-purple-400 transition duration-300"
         />
-        <div
-          *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched"
-          class="text-red-500 mt-2 text-sm"
-        >
-          <span>Kata sandi setidaknya 6 huruf.</span>
+        <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" class="text-red-400 mt-2 text-xs italic">
+          Kata sandi setidaknya 6 huruf.
         </div>
       </div>
 
@@ -45,21 +39,21 @@
       <button
         type="submit"
         [disabled]="loginForm.invalid"
-        class="w-full py-3 bg-gradient-to-r from-blue-600 to-teal-500 text-white rounded-lg hover:bg-gradient-to-r hover:from-blue-500 hover:to-teal-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 disabled:bg-gray-400"
+        class="w-full py-3 bg-gradient-to-r from-purple-500 via-indigo-600 to-blue-600 rounded-full text-white font-semibold hover:from-indigo-600 hover:to-purple-500 focus:outline-none focus:ring-4 focus:ring-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition duration-300"
       >
         Masuk
       </button>
     </form>
 
     <!-- Error Message -->
-    <p *ngIf="errorMessage" class="text-red-500 text-center mt-4 text-sm">
+    <p *ngIf="errorMessage" class="text-red-400 text-center mt-4 text-sm italic">
       {{ errorMessage }}
     </p>
 
     <!-- Register Link -->
-    <p class="mt-4 text-center text-gray-600 text-sm">
+    <p class="mt-6 text-center text-purple-300 text-sm">
       Belum punya akun? 
-      <a href="/register" class="text-blue-600 hover:text-blue-800 font-semibold transition duration-300">Daftar</a>
+      <a href="/register" class="text-indigo-400 hover:text-indigo-300 font-semibold transition duration-300">Daftar</a>
     </p>
   </div>
 </div>
