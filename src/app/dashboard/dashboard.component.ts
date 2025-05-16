@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
   loadConfesses(): void {
     this.confessService.getAllConfesses().subscribe(
       (confesses) => {
-        console.log('Data yang diterima dari backend:', confesses);
+        // console.log('Data yang diterima dari backend:', confesses);
         this.confesses = confesses.sort(
           (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         );
