@@ -15,6 +15,7 @@ module.exports = {
         dimBlue: "rgba(9,151,124,0.1)",
       },
       fontFamily: {
+        pacifico: ['Pacifico', 'cursive'],
         poppins: ["Poppins", "sans-serif"],
         inter: ["Inter", "sans-serif"],
         ios: [

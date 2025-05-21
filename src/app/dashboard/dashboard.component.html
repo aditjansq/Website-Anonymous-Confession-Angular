@@ -2,7 +2,8 @@
   <!-- Navbar -->
   <nav class="bg-white/10 backdrop-blur-md p-4 shadow-md fixed top-0 left-0 w-full z-50 border-b border-white/10">
     <div class="container mx-auto flex justify-between items-center">
-      <div class="text-white text-2xl font-semibold tracking-tight">Kuyfess</div>
+      <div class="text-white text-3xl font-pacifico tracking-wide">Kuyfess</div>
+
 
       <!-- Menu Desktop -->
       <div class="hidden md:flex space-x-4">
@@ -25,7 +26,7 @@
     <!-- Mobile Dropdown -->
     <div *ngIf="isMobileMenuOpen" class="md:hidden flex flex-col items-center bg-white/10 backdrop-blur-md space-y-2 p-4 mt-2 border-t border-white/10">
       <a [routerLink]="['/dashboard']" class="text-white hover:text-purple-300">Dashboard</a>
-      <a [routerLink]="['/submit']" class="text-white hover:text-purple-300">Buat Pengakuan</a>
+      <a [routerLink]="['/submit']" class="text-white hover:text-purple-300">Buat Confess</a>
       <a [routerLink]="['/tagged']" class="text-white hover:text-purple-300">Tagged</a>
       <button class="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600" (click)="openLogoutModal()">Logout</button>
     </div>
@@ -39,7 +40,7 @@
 
     <!-- Search -->
     <div class="mb-6 flex justify-center">
-      <input type="text" [(ngModel)]="searchTerm" (input)="filterConfesses()" placeholder="Cari pengakuan yang menyentuh hati..." class="w-full max-w-lg p-3 rounded-xl bg-white/10 border border-white/20 placeholder-gray-300 text-white focus:outline-none focus:ring-2 focus:ring-purple-400" />
+      <input type="text" [(ngModel)]="searchTerm" (input)="filterConfesses()" placeholder="Cari Pesan..." class="w-full max-w-lg p-3 rounded-xl bg-white/10 border border-white/20 placeholder-gray-300 text-white focus:outline-none focus:ring-2 focus:ring-purple-400" />
     </div>
 
     <!-- Card List -->
@@ -64,7 +65,7 @@
   <div *ngIf="isLogoutModalOpen" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50">
     <div class="bg-white/10 backdrop-blur-xl p-6 rounded-2xl w-96 border border-white/20 text-white">
       <h3 class="text-xl font-semibold text-center mb-4">Yakin ingin keluar?</h3>
-      <p class="text-center text-sm text-gray-300 mb-4">Kami akan menunggu pengakuanmu yang berikutnya.</p>
+      <p class="text-center text-sm text-gray-300 mb-4">Kami akan menunggu confess yang berikutnya.</p>
       <div class="flex justify-between">
         <button class="bg-white/20 px-6 py-2 rounded-full hover:bg-white/30 transition" (click)="closeLogoutModal()">Batal</button>
         <button class="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600" (click)="confirmLogout()">Logout</button>
@@ -72,17 +73,68 @@
     </div>
   </div>
 
-  <!-- Modal Share -->
-  <div *ngIf="isShareModalOpen" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50">
-    <div class="bg-white/10 backdrop-blur-xl p-6 rounded-2xl w-96 border border-white/20 text-white">
-      <h3 class="text-xl font-semibold text-center mb-4">Bagikan Pengakuan Ini</h3>
-      <p class="text-center text-sm text-gray-300 mb-4">Salin tautan di bawah untuk mengirimkan pesan ini ke orang yang kamu maksud.</p>
-      <input type="text" [value]="shareLink" readonly class="w-full p-2 rounded-xl bg-white/20 text-white border border-white/30 focus:outline-none mb-4" />
-      <div class="flex justify-center">
-        <button class="bg-white/20 text-white px-6 py-2 rounded-full hover:bg-white/30" (click)="closeShareModal()">Tutup</button>
-      </div>
+<!-- Modal Share -->
+<div
+  *ngIf="isShareModalOpen"
+  class="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50 px-4"
+>
+  <div
+    class="bg-white/10 backdrop-blur-xl p-6 rounded-2xl w-full max-w-md border border-white/20 text-white relative"
+  >
+    <h3 class="text-xl font-semibold text-center mb-4">Bagikan Pengakuan Ini</h3>
+    <p class="text-center text-sm text-gray-300 mb-6">
+      Salin tautan di bawah untuk mengirimkan pesan ini ke orang yang kamu maksud.
+    </p>
+
+    <div class="relative">
+      <input
+        type="text"
+        [value]="shareLink"
+        readonly
+        class="w-full p-3 rounded-xl bg-white/20 text-white border border-white/30 focus:outline-none focus:ring-2 focus:ring-purple-400 pr-12"
+      />
+      <button
+        (click)="copyToClipboard()"
+        aria-label="Copy link"
+        class="absolute top-1/2 right-3 transform -translate-y-1/2 text-white hover:text-green-400 transition"
+      >
+        <!-- Icon copy ala ChatGPT style -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          viewBox="0 0 24 24"
+        >
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Notifikasi salin -->
+    <div
+      *ngIf="copySuccess"
+      class="mt-4 text-center text-green-400 font-medium select-none"
+    >
+      Link berhasil disalin ke clipboard!
+    </div>
+
+    <div class="flex justify-center mt-6">
+      <button
+        (click)="closeShareModal()"
+        class="bg-white/20 text-white px-6 py-2 rounded-full hover:bg-white/30 transition"
+      >
+        Tutup
+      </button>
     </div>
   </div>
+</div>
+
+  
 
   <!-- Footer -->
   <footer class="bg-white/10 backdrop-blur-md text-white text-center py-4 border-t border-white/10">

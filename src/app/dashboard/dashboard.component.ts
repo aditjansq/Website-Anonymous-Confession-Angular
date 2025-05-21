@@ -13,15 +13,14 @@ import { Confess } from '../models/confess.model';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-
 export class DashboardComponent implements OnInit {
   confesses: Confess[] = [];
   filteredConfesses: Confess[] = [];
   searchTerm: string = '';
   isLogoutModalOpen: boolean = false;
-  isShareModalOpen: boolean = false; // Untuk membuka modal share
+  isShareModalOpen: boolean = false;
   isMobileMenuOpen = false;
-  shareLink: string = ''; // Menyimpan link yang akan dibagikan
+  shareLink: string = '';
 
   constructor(
     private confessService: ConfessService,
@@ -36,12 +35,10 @@ export class DashboardComponent implements OnInit {
   goToViewConfess(confessId: string) {
     this.router.navigate(['/view-confess', confessId]);
   }
-  
 
   loadConfesses(): void {
     this.confessService.getAllConfesses().subscribe(
       (confesses) => {
-        // console.log('Data yang diterima dari backend:', confesses);
         this.confesses = confesses.sort(
           (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         );
@@ -59,9 +56,7 @@ export class DashboardComponent implements OnInit {
       this.filteredConfesses = this.confesses.filter((confess) => {
         const receiver = confess.receiver.toLowerCase();
         const message = confess.message.toLowerCase();
-        return (
-          receiver.includes(searchLower) || message.includes(searchLower)
-        );
+        return receiver.includes(searchLower) || message.includes(searchLower);
       });
     } else {
       this.filteredConfesses = [...this.confesses];
@@ -86,7 +81,6 @@ export class DashboardComponent implements OnInit {
     this.closeLogoutModal();
   }
 
-  // Fungsi untuk membuka modal share dan mengatur link
   openShareModal(confessId: string): void {
     this.shareLink = `${window.location.origin}/view-confess/${confessId}`;
     this.isShareModalOpen = true;
@@ -95,5 +89,20 @@ export class DashboardComponent implements OnInit {
   closeShareModal(): void {
     this.isShareModalOpen = false;
   }
-}
 
+  // Fungsi copy otomatis ke clipboard dengan alert konfirmasi
+  copySuccess: boolean = false;
+
+  copyToClipboard() {
+    navigator.clipboard.writeText(this.shareLink).then(() => {
+      this.copySuccess = true;
+      // Hide message after 2.5 seconds
+      setTimeout(() => {
+        this.copySuccess = false;
+      }, 2500);
+    }).catch((err) => {
+      alert('Gagal menyalin link: ' + err);
+    });
+  }
+  
+}
